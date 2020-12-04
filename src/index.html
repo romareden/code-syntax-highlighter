@@ -7,43 +7,221 @@
 </head>
 <body>
 	<code>
-	.example {  
-		position: absolute;  
-		clip: rect(110px, 160px, 170px, 60px);  
-    }
-    .example {  
-        position: absolute;  
-        clip: rect(110px, 160px, 170px, 60px);  
-    }
-    .example {  
-        position: absolute;  
-        clip: rect(110px, 160px, 170px, 60px);  
-    }
-    </code>
-    
+		&lt;style&gt;
+			.example {
+				position: absolute;
+				clip: rect(110px, 160px, 170px, 60px);
+			}
+			#example {
+				position: absolute;
+				clip: rect(110px, 160px, 170px, 60px);
+			}
+			table td {
+				width: 200px;
+				vertical-align: middle;
+				text-align: center;
+				border: 1px solid #0F0;
+			}
+			table td img {
+				max-width: 200px;
+			}
+			div.wrapper{
+				display: table;
+				table-layout: fixed;
+				width: 200px;
+			}
+			div.inner {
+				display: table-cell;
+				height: 200px;
+				vertical-align: middle;
+				text-align: center;
+				border: 1px solid #0F0;
+			}
+			div.inner img {
+				max-height: 200px;
+			}
+		&lt;/style&gt;
+	</code>
+
+	<code>
+		&lt;!DOCTYPE html&gt; 
+		&lt;html&gt; 
+		&lt;head&gt;
+			&lt;meta  charset="utf-8" /&gt; 
+			&lt;title&gt;Page title&lt;/title&gt;
+			&lt;link rel="stylesheet"  href="styles/style.css" /&gt;
+		&lt;/head&gt;
+		&lt;body&gt;
+			&lt;header&gt;
+				&lt;h1&gt;Page header&lt;/h1&gt;
+			&lt;/header&gt;
+			&lt;nav&gt;
+				&lt;ul&gt;
+					&lt;li&gt;&lt;a href="#"&gt;Menu item 1&lt;/a&gt;&lt;/li&gt;
+					&lt;li&gt;&lt;a href="#"&gt;Menu item 3&lt;/a&gt;&lt;/li&gt;
+				&lt;/ul&gt;
+			&lt;/nav&gt;
+			&lt;section&gt;
+				&lt;article&gt;
+					&lt;header&gt;
+						&lt;h1&gt;Article #1&lt;/h1&gt;
+					&lt;/header&gt; 
+					&lt;section&gt;
+						This is the content of the &lt;mark&gt;first&lt;/mark&gt; article.
+					&lt;/section&gt; 
+				&lt;/article&gt; 
+				&lt;article&gt; 
+					&lt;header&gt; 
+						&lt;h1&gt;Article #2&lt;/h1&gt; 
+					&lt;/header&gt; 
+					&lt;section&gt; 
+						This is the content of the &lt;mark&gt;second&lt;/mark&gt; article.
+					&lt;/section&gt; 
+				&lt;/article&gt;
+			&lt;/section&gt;
+			&lt;aside&gt;
+				&lt;section&gt; 
+					&lt;h2&gt;Sidebar Links&lt;/h2&gt;
+					&lt;ul&gt;
+						&lt;li&gt;&lt;a href="#"&gt;Link 1&lt;/a&gt;&lt;/li&gt;
+						&lt;li&gt;&lt;a href="#"&gt;Link 3&lt;/a&gt;&lt;/li&gt;
+					&lt;/ul&gt;
+				&lt;/section&gt; 
+			&lt;/aside&gt; 
+			&lt;footer&gt;Copyright 2012&lt;/footer&gt; 
+		&lt;/body&gt; 
+		&lt;/html&gt;
+	</code>
+	<code>
+		&lt;?php
+			$var = 'Test';
+			echo "Test";
+			echo " &lt;div&gt;" . $var . " &lt;/div&gt;";
+		?&gt;
+	</code>
+
 	<style>
-        code {
-            display: block;
-            padding: 20px;
-            color: #caab7f;
-            background: #2c333d;
-            border-radius: 5px;
-        }
-        code span { display: inline-block; }
+		code {
+			display: block;
+			margin: 20px 0;
+			padding: 20px;
+			color: #caab7f;
+			font-size: 0;
+			background: #1e1e1e;
+			border-radius: 5px;
+		}
+		code * {
+			font-size: 14px;
+			line-height: 1.4;
+		}
+		code span {
+			display: inline-block;
+		}
 		code .-selector {
-            margin-right: 0.5em;
-			color: #63cbbb;
-        }
-        code .-property {
-            margin-left: 2em;
-			color: #ffd23b;
-        }
-        code .-value {
-            margin-left: 0.5em;
-			color: #aba9f9;
-        }
-        
+			margin-right: 0.5em;
+			color: #f1cd87
+		}
+		code .-rule {
+			display: block;
+		}
+		code .-rule .-property {
+			margin-left: 2em;
+			color: #9ee0ff;
+		}
+		code .-rule .-colon {
+			color: #f1cd87;
+		}
+		code .-rule .-value {
+			margin-left: 0.5em;
+			color: #d89e80;
+		}
+		code .-rule .-semicolon {
+			color: #f1cd87;
+		}
+		code .-curly-bracket.-opened {
+			color: #8c8c8c;
+		}
+		code .-curly-bracket.-closed {
+			display: block;
+			color: #8c8c8c;
+		}
+
+		code .-php-tag {
+			color: #9ee0ff;
+		}
+		code .-php-variable {
+			color: #9ee0ff;
+		}
+
+		code .-php-string {
+			color: #d89e80;
+		}
+
+		code .-attr > .-name {
+			color: #9ee0ff;
+		}
+		code .-equal {
+			color: #f1cd87;
+		}
+		code .-attr .-value {
+			margin: 0;
+			color: #d89e80;
+		}
+		code .-tag {
+			display: block;
+		}
+		
+		
+		code .-tag.-level-1 {
+			margin-left: .0em;
+		}
+		code .-tag.-level-2 {
+			margin-left: 1em;
+		}
+		code .-tag.-level-3 {
+			margin-left: 2em;
+		}
+		code .-tag.-level-4 {
+			margin-left: 3em;
+		}
+		code .-tag.-level-5 {
+			margin-left: 4em;
+		}
+		code .-tag.-level-6 {
+			margin-left: 5em;
+		}
+		code .-tag.-level-7 {
+			margin-left: 6em;
+		}
+		code .-tag.-inline {
+			display: inline-block;
+		}
+		code .-tag.-closing {
+			margin-left: 0;
+			margin-right: .5em;
+		}
+		code .-tag .-attributes {
+			margin-left: 0.5em;
+		}
+		code .-text + .-inline {
+			margin-left: .5em;
+		}
+		
+		code .-text + .-inline.-closing {
+			margin-left: 0;
+		}
+
+		code .-tag .-lt,
+		code .-tag .-gt {
+			color: #8c8c8c;
+		}
+		code .-tag,
+		code .-tag > .-name {
+			color: #4593d6;
+		}
+
+	
 	</style>
-	<script src="index.js"></script>
+	<script src="index.js" type="module"></script>
 </body>
 </html>

@@ -1,23 +1,25 @@
-	
-	let start = Date.now();
+import analyse from './modules/analyse.js';
+import css from './modules/css.js';
+import html from './modules/html.js';
+import php from './modules/php.js';
 
-	const codeTags = document.getElementsByTagName('code');
-	
-	for (let i = 0; i < codeTags.length; i++) {
-		let currentCodeTag = codeTags[i].innerHTML;
-		currentCodeTag = currentCodeTag.replace(/[ \n\r\t]/g, '');
-		currentCodeTag = currentCodeTag.replace(/(\.)([a-z-0-9]*)({)/gi, '$1<span class="-selector">$2</span>$3');
-		currentCodeTag = currentCodeTag.replace(/({|;)([a-z-]*)(:)/gi, '$1<span class="-property">$2</span>$3');
-		currentCodeTag = currentCodeTag.replace(/(:)([a-z,()0-9#]*)(;|})/gi, '$1<span class="-value">$2</span>$3<br>');
-		currentCodeTag = currentCodeTag.replace(/({|})/gi, '<span class="-curly-brackets">$1</span><br>');
+const filters = {css, html, php};
 
-		codeTags[i].innerHTML = currentCodeTag;
-		console.log(currentCodeTag);
+//console.log(analyse(document.querySelector('code')));
+
+const codeTags = document.getElementsByTagName('code');
+	
+for (let i = 0; i < codeTags.length; i++) {
+	let currentCodeTag = codeTags[i].innerHTML;
+	//console.log(typeof currentCodeTag);
+	let analysisResult = analyse(currentCodeTag);
+	let modifiedCodeTag = currentCodeTag;
+	
+	if (analysisResult.length) {
+		analysisResult.forEach(filter => {
+			//console.log(filters[filter](modifiedCodeTag));
+			modifiedCodeTag = filters[filter](modifiedCodeTag);
+		});
 	}
-
-	let end = Date.now();
-	console.log(end-start);
-	
-	
-
-
+	codeTags[i].innerHTML = modifiedCodeTag;
+}
