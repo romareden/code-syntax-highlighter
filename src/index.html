@@ -4,6 +4,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Document</title>
+	<style></style>
 </head>
 <body>
 	<code>
@@ -95,8 +96,23 @@
 	<code>
 		&lt;?php
 			$var = 'Test';
-			echo "Test";
-			echo " &lt;div&gt;" . $var . " &lt;/div&gt;";
+			echo 'Test';
+			echo '&lt;div&gt;' . $var . '&lt;/div&gt;';
+			add_filter('wp_list_categories', 'add_slug_class_wp_list_categories');
+			function add_slug_class_wp_list_categories($list) {
+
+				$cats = get_categories( 'hide_empty=0' );
+				foreach ( $cats as $cat ) {
+					$find = 'cat-item-' . $cat->term_id . '"';
+					$replace = 'cat-item-' . $cat->slug . ' cat-item-' . $cat->term_id . '"';
+					$list = str_replace( $find, $replace, $list );
+					$find = 'cat-item-' . $cat->term_id . ' ';
+					$replace = 'cat-item-' . $cat->slug . ' cat-item-' . $cat->term_id . ' ';
+					$list = str_replace( $find, $replace, $list );
+				}
+
+				return $list;
+			}
 		?&gt;
 	</code>
 
@@ -144,17 +160,6 @@
 		code .-curly-bracket.-closed {
 			display: block;
 			color: #8c8c8c;
-		}
-
-		code .-php-tag {
-			color: #9ee0ff;
-		}
-		code .-php-variable {
-			color: #9ee0ff;
-		}
-
-		code .-php-string {
-			color: #d89e80;
 		}
 
 		code .-attr > .-name {
@@ -219,6 +224,57 @@
 		code .-tag > .-name {
 			color: #4593d6;
 		}
+
+		code .-php .-line {
+			display: block;
+		}
+		code .-php-tag {
+			display: block;
+			color: #d64545;
+		}
+		code .-php .-func {
+			color: #ffebc3;
+		}
+		code .-string {
+			color: #d89e80;
+		}
+		code .-php .-variable {
+			color: #9ee0ff;
+		}
+		code .-php .-arrow {
+			color: #ffebc3;;
+		}
+		code .-php .-property {
+			color: #9ee0ff;
+		}
+
+		code .-php .-colon {
+			color: #ffebc3;
+		}
+		code .-php .-parentheses,
+		code .-php .-semicolon,
+		code .-php .-equal,
+		code .-php .-comma,
+		code .-php .-period,
+		code .-php .-curly-brace {
+			color: #ffebc3;
+		}
+		code .-php .-curly-brace.-qb-close {
+			display: block;
+		}
+		code .-php .-word {
+			color: #e486ff;
+		}
+		code .-php .-level-1 {
+			margin-left: 1em;
+		}
+		code .-php .-level-2 {
+			margin-left: 2em;
+		}
+		code .-php .-level-3 {
+			margin-left: 3em;
+		}
+		
 
 	
 	</style>

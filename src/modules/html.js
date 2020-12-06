@@ -1,30 +1,21 @@
 export default function html(code){
-	
-	//Attribute and value
-	//code = code.replace(/(\w+)=("[\w-#\/\.]*")/gi, '<span class="-attr"><span class="-name">$1</span><span class="-equal">=</span><span class="-value">$2</span></span>');
 	//Wrap simple text
-	code = code.replace(/(&gt;)([\w#\.\-\s\n\r\t]+)(&lt;)/gi,  function (match, p1, p2, p3) {
+	code = code.replace(/(&gt;)([\w#\.\-\s\n\r\t]+)(&lt;)/g,  function (match, p1, p2, p3) {
 		if ( p2.match(/^[\s\n\r\t]+$/gi)) { //If theare are only spaces then remove them
 			return p1 + p3;
 		}
 		return p1 + '<span class="-text">' + p2 + '</span>' + p3;
 	});	
 	
-	code = code.replace(/(<span class="-tag -text">)([\s\n\r\t]*)(<\/span>)/gi, '');
-	//Tags
-	//code = code.replace(/(&lt;\s*\/?)(\w*)(\s*&gt;)/gi, '<span class="-tag"><span class="-lt">$1</span><span class="-name">$2</span><span class="-gt">$3</span></span>'); 
-	//(&lt;\s*\/?)(!?\w*\s*\w*)\s*(&gt;)
+	code = code.replace(/(<span class="-tag -text">)([\s\n\r\t]*)(<\/span>)/g, '');
 	
 	//Tags
-	code = code.replace(/(&lt;\s*\/?)(\w*)/gi, '<span class="-tag"><span class="-lt">$1</span><span class="-name">$2</span>'); //old. it works but selects tags in "" which should be strings
+	code = code.replace(/(&lt;\s*\/?)(\w*)/g, '<span class="-tag"><span class="-lt">$1</span><span class="-name">$2</span>'); //old. it works but selects tags in "" which should be strings
 	//code = code.replace(/([^"]\s)(&lt;\s*\/?)(\w*[^(?php)])/gi, '<span class="-tag"><span class="-lt">$2</span><span class="-name">$3</span>');
-	code = code.replace(/(\/?&gt;)/gi, '<span class="-gt">$1</span></span>');
+	code = code.replace(/(\/?&gt;)/g, '<span class="-gt">$1</span></span>');
 
 	//Remove multiple whitespaces
-	code = code.replace(/\s+/gi, ' ');
-
-	//Remove whitespaces between spans
-	//code = code.replace(/span> </gi, 'span><');
+	code = code.replace(/\s+/g, ' ');
 
 	if ( code.indexOf('class="-tag"') ) {
 		let htmlEl = document.createElement('div');
@@ -82,11 +73,6 @@ export default function html(code){
 
 		code = htmlEl.innerHTML;
 	}
-	//let htmlEl = document.createElement('div');
-	//htmlEl.innerHTML = code;
-	//Identation
-
-	//console.log(htmlEl);
 
 	return code;
 }
